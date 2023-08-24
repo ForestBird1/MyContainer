@@ -55,4 +55,17 @@ public:
 		return my_capacity;
 	}
 	
+	//인덱스 유효성검사를 합니다
+	//유효하지 않으면 throw
+	bool CheckValidIndex(const size_t index)
+	{
+		if ((index >= 0) && (index < this->my_size))
+		{
+			return true;
+		}
+		else
+		{
+			throw printf("범위를 벗어난 인덱스를 사용하였습니다. 접근하려는 인덱스: %d, 배열크기: %d", index, this->Num());
+		}
+	}
 };

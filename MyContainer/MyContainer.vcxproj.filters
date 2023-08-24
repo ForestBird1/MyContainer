@@ -29,5 +29,8 @@
     <ClInclude Include="MyVector.h">
       <Filter>Source Files\Container</Filter>
     </ClInclude>
+    <ClInclude Include="MyStack.h">
+      <Filter>Source Files\Container</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

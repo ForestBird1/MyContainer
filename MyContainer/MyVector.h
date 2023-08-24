@@ -80,7 +80,7 @@ public:
 	}
 
 	//마지막 위치에 원소를 추가합니다
-	void Add(Data data)
+	void Add(const Data& data)
 	{
 		Insert(this->Num(), data);
 	}
@@ -88,7 +88,7 @@ public:
 	//정해진 위치에 원소를 추가합니다
 	//원소 삽입시 기존 위치의 원소부터 마지막원소까지 전부 인덱스가 +1씩 밀리기 때문에
 	//원소가 많고 0의 가까운위치에 삽입될수록 느려질 수 있습니다
-	void Insert(size_t insert_index, Data data)
+	void Insert(const size_t insert_index, const Data& data)
 	{
 		//컨테이너에 비어있는 자리가 있는지 확인
 		if (this->my_size == this->my_capacity)
@@ -113,7 +113,7 @@ public:
 	//해당 위치의 원소를 삭제합니다
 	void RemoveAt(const size_t index)
 	{
-		CheckValidIndex(index);
+		this->CheckValidIndex(index);
 
 		--this->my_size;
 		for (size_t i = index; i < this->my_size; ++i)
@@ -134,7 +134,7 @@ public:
 	Data& PopBack()
 	{
 		const size_t last_index = this->Num() - 1;
-		CheckValidIndex(last_index);
+		this->CheckValidIndex(last_index);
 
 		Data& data = this->my_base[last_index];
 
@@ -146,25 +146,11 @@ public:
 	Data& operator[] (const size_t index)
 	{
 		//인덱스가 유효하면 인덱스 위치에 보관한 자료를 반환하세요.
-		CheckValidIndex(index);
+		this->CheckValidIndex(index);
 
 		//데이터를 반환합니다
 		//반환 형식이 참조 형식임을 주의하세요.
 		return this->my_base[index];
-	}
-
-	//인덱스 유효성검사를 합니다
-	//유효하지 않으면 throw
-	bool CheckValidIndex(const size_t index)
-	{
-		if ((index >= 0) && (index < this->my_size))
-		{
-			return true;
-		}
-		else
-		{
-			throw printf("범위를 벗어난 인덱스를 사용하였습니다. 접근하려는 인덱스: %d, 배열크기: %d", index, this->Num());
-		}
 	}
 
 	void operator= (std::initializer_list<Data> list)
