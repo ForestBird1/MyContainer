@@ -21,10 +21,10 @@ public:
 			return *pos;
 		}
 
-		int operator-(const iterator& iter)const
-		{
-			return pos - iter.pos;
-		}
+		//int operator-(const iterator& iter)const
+		//{
+		//	return pos - iter.pos;
+		//}
 
 		bool operator!=(const iterator& iter)const
 		{
@@ -41,17 +41,7 @@ public:
 			++pos;
 			return (*this);
 		}
-
-		//ÈÄÀ§
-		const iterator operator++(int)
-		{
-			iterator re(*this);
-			pos++;
-			return re;
-		}
 	};
-	typedef
-		iterator const_iterator;
 
 public:
 	MyVector()

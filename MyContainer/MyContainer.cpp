@@ -11,10 +11,21 @@ using namespace std;
 void PrintMyVector(MyVector<int>& vector)
 {
 	cout << "[";
-	for (auto it = vector.begin(); it != vector.end(); ++it)
+	//for (auto it = vector.begin(); it != vector.end(); ++it)
+	//{
+	//	cout << to_string(*it) + ",";
+	//}
+	
+	//for (MyVector<int>::iterator it = vector.begin(); it != vector.end(); ++it)
+	//{
+	//	cout << to_string(*it) + ",";
+	//}
+
+	for (auto it : vector)
 	{
-		cout << to_string(*it) + ",";
+		cout << to_string(it) + ",";
 	}
+
 	cout << "] Vector Size: " + to_string(vector.Num()) + " Capacity: " + to_string(vector.Max()) << endl;
 }
 void TestMyVector()
@@ -151,6 +162,6 @@ void TestMyStack()
 
 int main()
 {
-	//TestMyVector();
-	TestMyStack();
+	TestMyVector();
+	//TestMyStack();
 }
