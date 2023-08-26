@@ -139,10 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Container_Master.h" />
+    <ClInclude Include="MyContainer.h" />
+    <ClInclude Include="MyQueue_DynamicCircle.h" />
+    <ClInclude Include="MyQueue_DynamicArray.h" />
+    <ClInclude Include="MyQueue_FixedCircle.h" />
     <ClInclude Include="MyStack.h" />
     <ClInclude Include="MyVector.h" />
   </ItemGroup>

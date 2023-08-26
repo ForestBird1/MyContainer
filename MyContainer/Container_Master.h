@@ -9,10 +9,10 @@ protected:
 	size_t my_size = 0;
 
 	//캐퍼시티를 늘릴 때 지정된 값이 없다면 해당 값만큼 늘립니다
-	const size_t additive_capacity = 32;
+	const size_t additive_capacity = 4;
 public:
 	//컨테이너의 공간을 새로 생성합니다
-	void Reserve(size_t capacity)
+	virtual void Reserve(size_t capacity)
 	{
 		//기존 캐퍼시티가 더 크다면 재할당을 하지 않습니다
 		if (my_capacity >= capacity)
@@ -24,7 +24,7 @@ public:
 		//컨테이너에 원소가 있다면 새로 할당한 주소로 옮겨줍니다
 		if (my_size >= 1)
 		{
-			for (size_t i = 0; i < my_size; i++)
+			for (size_t i = 0; i < my_size; ++i)
 			{
 				temp[i] = my_base[i];
 			}

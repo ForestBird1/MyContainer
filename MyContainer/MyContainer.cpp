@@ -3,19 +3,36 @@
 #include <iostream>
 #include <vector>
 
+#include "MyContainer.h"
+
 #include "MyVector.h"
 #include "MyStack.h"
+#include "MyQueue_DynamicCircle.h"
+#include "MyQueue_FixedCircle.h"
+#include "MyQueue_DynamicArray.h"
 
 using namespace std;
 
-void PrintMyVector(MyVector<int>& vector)
+void MyContainer::Main()
+{
+	//TestMyVector();
+	
+	//TestMyStack();
+	
+	//TestMyQueue_DynamicCircle();
+	//TestMyQueue_FixedCircle();
+	//TestMyQueue_DynamicArray();
+}
+
+
+void MyContainer::PrintMyVector(MyVector<int>& vector)
 {
 	cout << "[";
 	//for (auto it = vector.begin(); it != vector.end(); ++it)
 	//{
 	//	cout << to_string(*it) + ",";
 	//}
-	
+
 	//for (MyVector<int>::iterator it = vector.begin(); it != vector.end(); ++it)
 	//{
 	//	cout << to_string(*it) + ",";
@@ -28,15 +45,15 @@ void PrintMyVector(MyVector<int>& vector)
 
 	cout << "] Vector Size: " + to_string(vector.Num()) + " Capacity: " + to_string(vector.Max()) << endl;
 }
-void TestMyVector()
+void MyContainer::TestMyVector()
 {
 	/*
 	* 벡터의 함수명인 Add,Num,Max은 언리얼엔진의 TArray를 참고해서 만들었습니다
-	* 
+	*
 	* Add(): 마지막위치에 원소추가
 	* Num(): 배열의 사이즈
 	* Max(): 배열의 캐퍼시티사이즈
-	* 
+	*
 	* 더 자세한 내용은 MyVector.h를 참고하세요
 	*/
 
@@ -48,9 +65,9 @@ void TestMyVector()
 
 	//size_t는 unsigned int와 '비슷'합니다
 	//https://forestbird0.tistory.com/37
-	const size_t vector_size = 10;
-	my_vector.Reserve(vector_size);
-	cout << endl << "백터 capacity  할당. 할당 사이즈: " + to_string(vector_size) << endl;
+	const size_t capacity_size = 10;
+	my_vector.Reserve(capacity_size);
+	cout << endl << "백터 capacity  할당. 할당 사이즈: " + to_string(capacity_size) << endl;
 	PrintMyVector(my_vector);
 
 	my_vector.Add(0); //index: 0
@@ -105,7 +122,7 @@ void TestMyVector()
 	PrintMyVector(my_vector);
 }
 
-void PrintMyStack(MyStack<int>& stack)
+void MyContainer::PrintMyStack(MyStack<int>& stack)
 {
 	cout << "[";
 	for (size_t i = 0; i < stack.Num(); ++i)
@@ -115,7 +132,7 @@ void PrintMyStack(MyStack<int>& stack)
 	}
 	cout << "] Stack Size: " + to_string(stack.Num()) + " Capacity: " + to_string(stack.Max()) << endl;
 }
-void TestMyStack()
+void MyContainer::TestMyStack()
 {
 	cout << "MyStack 테스트" << endl;
 
@@ -125,9 +142,9 @@ void TestMyStack()
 
 	//size_t는 unsigned int와 '비슷'합니다
 	//https://forestbird0.tistory.com/37
-	const size_t stack_size = 10;
-	my_stack.Reserve(stack_size);
-	cout << endl << "스택 capacity  할당. 할당 사이즈: " + to_string(stack_size) << endl;
+	const size_t capacity_size = 10;
+	my_stack.Reserve(capacity_size);
+	cout << endl << "스택 capacity  할당. 할당 사이즈: " + to_string(capacity_size) << endl;
 	PrintMyStack(my_stack);
 
 	my_stack.PushBack(0); //index: 0
@@ -151,7 +168,7 @@ void TestMyStack()
 	cout << endl << "스택의 원소중 가장 마지막에 추가된 원소를 삭제및 반환(PopBack): " + to_string(my_stack.PopBack()) << endl;
 	PrintMyStack(my_stack);
 
-	cout << endl << "스택의 모든 원소 Pop"<< endl;
+	cout << endl << "스택의 모든 원소 Pop" << endl;
 	for (size_t i = 0, i_len = my_stack.Num(); i < i_len; ++i)
 	{
 		my_stack.PopBack();
@@ -159,9 +176,164 @@ void TestMyStack()
 	}
 }
 
-
-int main()
+void MyContainer::PrintMyQueue_DynamicCircle(MyQueue_DynamicCircle<int>& queue)
 {
-	TestMyVector();
-	//TestMyStack();
+	cout << "[";
+	for (size_t i = 0; i < queue.Max(); ++i)
+	{
+		const int element = queue[i];
+		cout << to_string(element) + ",";
+	}
+	cout << "] Q Size: " + to_string(queue.Num()) + " Capacity: " + to_string(queue.Max()) << endl;
+	cout << "Rear: " + to_string(queue.GetRear()) + " Front: " + to_string(queue.GetFront()) << endl;
+}
+void MyContainer::TestMyQueue_DynamicCircle()
+{
+	cout << "MyQueue_DynamicCircle 테스트" << endl;
+
+	cout << endl << "Q생성" << endl;
+	MyQueue_DynamicCircle<int> my_queue;
+	PrintMyQueue_DynamicCircle(my_queue);
+
+	//size_t는 unsigned int와 '비슷'합니다
+	//https://forestbird0.tistory.com/37
+	const size_t capacity_size = 3;
+	my_queue.Reserve(capacity_size);
+	cout << endl << "Q capacity  할당. 할당 사이즈: " + to_string(capacity_size) << endl;
+	PrintMyQueue_DynamicCircle(my_queue);
+
+	int i = 0;
+	int i_pop = 0;
+	while (true)
+	{
+		cout << endl << "0을 입력하면 Dequeue, 이외 숫자를 입력하면 Enqueue, " << endl;
+		cin >> i;
+		if (i != 0)
+		{
+			my_queue.PushBack(i);
+		}
+		else
+		{
+			if (my_queue.PopFront(i_pop))
+			{
+				cout << "Pop: " + to_string(i_pop) << endl;
+			}
+			else
+			{
+				cout << "Pop Failed, 큐가 비었습니다" << endl;
+			}
+			
+		}
+		
+		PrintMyQueue_DynamicCircle(my_queue);
+	}
+}
+
+void MyContainer::PrintMyQueue_FixedCircle(MyQueue_FixedCircle<int>& queue)
+{
+	cout << "[";
+	for (size_t i = 0; i < queue.Max(); ++i)
+	{
+		const int element = queue[i];
+		cout << to_string(element) + ",";
+	}
+	cout << "] Q Size: " + to_string(queue.Num()) + " Capacity: " + to_string(queue.Max()) << endl;
+	cout << "Rear: " + to_string(queue.GetRear()) + " Front: " + to_string(queue.GetFront()) << endl;
+}
+void MyContainer::TestMyQueue_FixedCircle()
+{
+	cout << "MyQueue_FixedCircle 테스트" << endl;
+
+	MyQueue_FixedCircle<int> my_queue(3);
+	PrintMyQueue_FixedCircle(my_queue);
+	cout << endl << "Q생성" << endl;
+
+
+	int i = 0;
+	int i_pop = 0;
+	while (true)
+	{
+		cout << endl << "0을 입력하면 Dequeue, 이외 숫자를 입력하면 Enqueue, " << endl;
+		cin >> i;
+		if (i != 0)
+		{
+			if (my_queue.PushBack(i))
+			{
+				
+			}
+			else
+			{
+				cout << "PushBack Failed, 큐가 꽉차서 추가하지 못했습니다" << endl;
+			}
+		}
+		else
+		{
+			if (my_queue.PopFront(i_pop))
+			{
+				cout << "Pop: " + to_string(i_pop) << endl;
+			}
+			else
+			{
+				cout << "Pop Failed, 큐가 비었습니다" << endl;
+			}
+
+		}
+
+		PrintMyQueue_FixedCircle(my_queue);
+	}
+}
+
+void MyContainer::PrintMyQueue_DynamicArray(MyQueue_DynamicArray<int>& queue)
+{
+	cout << "[";
+	for (size_t i = 0; i < queue.Max(); ++i)
+	{
+		const int element = queue[i];
+		cout << to_string(element) + ",";
+	}
+	cout << "] Q Size: " + to_string(queue.Num()) + " Capacity: " + to_string(queue.Max()) << endl;
+	cout << "Rear: " + to_string(queue.GetRear()) + " Front: " + to_string(queue.GetFront()) << endl;
+}
+void MyContainer::TestMyQueue_DynamicArray()
+{
+	cout << "MyQueue_DynamicArray 테스트" << endl;
+
+	cout << endl << "Q생성" << endl;
+	MyQueue_DynamicArray<int> my_queue;
+	PrintMyQueue_DynamicArray(my_queue);
+
+	//size_t는 unsigned int와 '비슷'합니다
+	//https://forestbird0.tistory.com/37
+	const size_t capacity_size = 3;
+	my_queue.Reserve(capacity_size);
+	cout << endl << "Q capacity  할당. 할당 사이즈: " + to_string(capacity_size) << endl;
+	PrintMyQueue_DynamicArray(my_queue);
+
+
+	int i = 0;
+	int i_pop = 0;
+	while (true)
+	{
+		cout << endl << "0을 입력하면 Dequeue, 이외 숫자를 입력하면 Enqueue, " << endl;
+		cin >> i;
+		if (i != 0)
+		{
+			my_queue.PushBack(i);
+		}
+		else
+		{
+			if (my_queue.PopFront(i_pop))
+			{
+				cout << "Pop: " + to_string(i_pop) << endl;
+			}
+			else
+			{
+				cout << "Pop Failed, 큐가 비었습니다" << endl;
+			}
+
+		}
+
+		my_queue.SortQueue();
+		PrintMyQueue_DynamicArray(my_queue);
+	}
 }
