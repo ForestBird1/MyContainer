@@ -86,19 +86,10 @@ public:
 	//Dequeue
 	const bool PopFront(Data& out_data)
 	{
-		//rear와 front가 동일한 인덱스를 가리키면 큐가 꽉찼거나 비어있음을 의미합니다
-		if (_rear == _front)
+		//큐가 비어있으면 Pop을 하지 않습니다
+		if (this->my_size <= 0)
 		{
-			//큐가 비어있으면 Pop을 하지 않습니다
-			if (this->my_size <= 0)
-			{
-				return false;
-			}
-		}
-
-		if (_front >= this->my_capacity)
-		{
-			_front = 0;
+			return false;
 		}
 
 		--this->my_size;
@@ -118,8 +109,6 @@ public:
 	//재할당하는 방법이 있지만, 여기선 빈 공간을 NULL(0)로 표현했습니다
 	void SortQueue()
 	{
-		int empty_index_count = _front;
-
 		//원소를 앞으로 이동시킵니다
 		size_t i = 0;
 		for (i = _front; i < _rear; ++i)
