@@ -51,25 +51,25 @@ public:
 			temp[i] = NULL;
 		}
 
+		//0번째 인덱스부터 rear까지 새로 할당한 배열에 복사합니다
+		for (size_t i = 0; i < _rear; ++i)
+		{
+			temp[i] = this->my_base[i];
+		}
+
 		//컨테이너에 원소가 있다면 새로 할당한 주소로 옮겨줍니다
 		if (this->my_capacity > 0 &&
+			this->my_size > 0 &&
 			_rear <= _front)
 		{
-			//0번째 인덱스부터 rear까지 새로 할당한 배열에 복사합니다
-			for (size_t i = 0; i < _rear; ++i)
-			{
-				temp[i] = this->my_base[i];
-			}
-
 			//front부터 마지막인덱스까지 새로 할당한 배열에 복사합니다
 			for (size_t i = 0; i < this->my_capacity - _front; ++i)
 			{
-				temp[capacity - i - 1] = this->my_base[this->my_size - i - 1];
+				temp[capacity - i - 1] = this->my_base[this->my_capacity - i - 1];
 			}
+			_front += capacity - this->my_capacity;
 
 			delete[] this->my_base;
-
-			_front += capacity - this->my_capacity;
 		}
 
 		

@@ -19,7 +19,7 @@ void MyContainer::Main()
 	
 	//TestMyStack();
 	
-	//TestMyQueue_DynamicCircle();
+	TestMyQueue_DynamicCircle();
 	//TestMyQueue_FixedCircle();
 	//TestMyQueue_DynamicArray();
 }
@@ -206,13 +206,9 @@ void MyContainer::TestMyQueue_DynamicCircle()
 	int i_pop = 0;
 	while (true)
 	{
-		cout << endl << "0을 입력하면 Dequeue, 이외 숫자를 입력하면 Enqueue, " << endl;
+		cout << endl << "0을 입력하면 Dequeue, 99를 입력하면 Reserve(+1), 이외 숫자를 입력하면 Enqueue" << endl;
 		cin >> i;
-		if (i != 0)
-		{
-			my_queue.PushBack(i);
-		}
-		else
+		if (i == 0)
 		{
 			if (my_queue.PopFront(i_pop))
 			{
@@ -222,8 +218,16 @@ void MyContainer::TestMyQueue_DynamicCircle()
 			{
 				cout << "Pop Failed, 큐가 비었습니다" << endl;
 			}
-			
 		}
+		else if(i == 99)
+		{
+			my_queue.Reserve(my_queue.Max() + 1);
+		}
+		else
+		{
+			my_queue.PushBack(i);
+		}
+
 		
 		PrintMyQueue_DynamicCircle(my_queue);
 	}

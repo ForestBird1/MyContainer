@@ -56,7 +56,7 @@ public:
 		//rear와 front가 동일한 인덱스를 가리키면 큐가 꽉찼거나 비어있음을 의미합니다
 		if (_rear == _front)
 		{
-			//큐가 꽉찼으면 재할당합니다
+			//큐가 꽉찼으면 데이터를 채울 수 없습니다
 			if (this->my_size > 0)
 			{
 				return false;
