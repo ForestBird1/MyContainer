@@ -10,6 +10,7 @@
 #include "MyQueue_DynamicCircle.h"
 #include "MyQueue_FixedCircle.h"
 #include "MyQueue_DynamicArray.h"
+#include "MyLinkedList.h"
 
 using namespace std;
 
@@ -19,9 +20,11 @@ void MyContainer::Main()
 	
 	//TestMyStack();
 	
-	TestMyQueue_DynamicCircle();
+	//TestMyQueue_DynamicCircle();
 	//TestMyQueue_FixedCircle();
 	//TestMyQueue_DynamicArray();
+
+	TestMyLinkedList();
 }
 
 
@@ -339,5 +342,74 @@ void MyContainer::TestMyQueue_DynamicArray()
 
 		my_queue.SortQueue();
 		PrintMyQueue_DynamicArray(my_queue);
+	}
+}
+
+void MyContainer::TestMyLinkedList()
+{
+	MyLinkedList<int> my_list;
+	
+	char c = 'a';
+	int i = 0;
+	while (true)
+	{
+		cout << endl << "동작시킬 기능을 선택하세요" << endl;
+		cout << "A: AddFront(): 가장 앞에 데이터를 추가합니다" << endl;
+		cout << "S: AddBack(): 가장 뒤에 데이터를 추가합니다" << endl;
+		cout << endl;
+		cout << "Q: RemoveFront(): 가장 앞의 데이터를 제거합니다" << endl;
+		cout << "W: RemoveBack(): 가장 뒤의 데이터를 제거합니다" << endl;
+		cout << "E: RemoveData(data): 삭제하고싶은 데이터를 찾아서 제거합니다. 찾지못하면 실패합니다" << endl;
+		cout << endl;
+		cout << "Z: GetDataFront(): 가장 앞의 데이터를 반환합니다" << endl;
+		cout << "X: GetDataBack(): 가장 뒤의 데이터를 반환합니다" << endl;
+
+		cin >> c;
+
+		if (c == 'A' || c == 'a')
+		{
+			cout << endl << "앞쪽에 추가할 숫자를 입력하세요" << endl;
+			cin >> i;
+			my_list.AddFront(i);
+		}
+		else if (c == 'S' || c == 's')
+		{
+			cout << endl << "뒷쪽에 추가할 숫자를 입력하세요" << endl;
+			cin >> i;
+			my_list.AddBack(i);
+		}
+
+		else if (c == 'Q' || c == 'q')
+		{
+			cout << endl << "맨 앞의 데이터를 삭제합니다" << endl;
+			my_list.RemoveFront();
+		}
+		else if (c == 'W' || c == 'w')
+		{
+			cout << endl << "맨 뒤의 데이터를 삭제합니다" << endl;
+			my_list.RemoveBack();
+		}
+		else if (c == 'E' || c == 'e')
+		{
+			cout << endl << "삭제할 데이터를 입력하세요" << endl;
+			cin >> i;
+			if (!my_list.RemoveData(i))
+			{
+				cout << endl << "데이터를 찾지 못해서 실패했습니다" << endl;
+			}
+		}
+
+		else if (c == 'Z' || c == 'z')
+		{
+			cout << endl << "맨 앞의 데이터를 반환합니다" << endl;
+			cout << "반환된 데이터: " + to_string(my_list.GetDataFront()) << endl;
+		}
+		else if (c == 'X' || c == 'x')
+		{
+			cout << endl << "맨 뒤의 데이터를 반환합니다" << endl;
+			cout << "반환된 데이터: " + to_string(my_list.GetDataBack()) << endl;
+		}
+
+		my_list.PrintAllData();
 	}
 }

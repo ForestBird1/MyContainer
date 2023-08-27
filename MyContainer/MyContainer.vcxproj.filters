@@ -47,5 +47,8 @@
     <ClInclude Include="MyQueue_DynamicArray.h">
       <Filter>Source Files\Container</Filter>
     </ClInclude>
+    <ClInclude Include="MyLinkedList.h">
+      <Filter>Source Files\Container</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

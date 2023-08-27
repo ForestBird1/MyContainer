@@ -54,6 +54,7 @@ public:
 	{
 		return my_capacity;
 	}
+protected:
 	
 	//인덱스 유효성검사를 합니다
 	//유효하지 않으면 throw
