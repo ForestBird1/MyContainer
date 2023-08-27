@@ -5,6 +5,7 @@ template<typename T> class MyStack;
 template<typename T> class MyQueue_DynamicCircle;
 template<typename T> class MyQueue_FixedCircle;
 template<typename T> class MyQueue_DynamicArray;
+template<typename T> class MyLinkedList;
 
 class MyContainer
 {
@@ -26,4 +27,6 @@ private:
 
 	void PrintMyQueue_DynamicArray(MyQueue_DynamicArray<int>& queue);
 	void TestMyQueue_DynamicArray();
+
+	void TestMyLinkedList();
 };

@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Container_Master.h" />
     <ClInclude Include="MyContainer.h" />
+    <ClInclude Include="MyLinkedList.h" />
     <ClInclude Include="MyQueue_DynamicCircle.h" />
     <ClInclude Include="MyQueue_DynamicArray.h" />
     <ClInclude Include="MyQueue_FixedCircle.h" />
