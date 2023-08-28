@@ -410,6 +410,10 @@ void MyContainer::TestMyLinkedList()
 			cout << "반환된 데이터: " + to_string(my_list.GetDataBack()) << endl;
 		}
 
+<<<<<<< HEAD
 		my_list.PrintAllDataForward();
+=======
+		my_list.PrintAllData();
+>>>>>>> eac9345a8878ee39a3b7554a5be79aa63d8a22b1
 	}
 }

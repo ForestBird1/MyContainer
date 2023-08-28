@@ -86,7 +86,11 @@ public:
 		return tail->prev->data;
 	}
 
+<<<<<<< HEAD
 	void PrintAllDataForward()
+=======
+	void PrintAllData()
+>>>>>>> eac9345a8878ee39a3b7554a5be79aa63d8a22b1
 	{
 		for (Node* nd = head->next; nd != tail; nd = nd->next)
 		{
@@ -94,6 +98,7 @@ public:
 		}
 		std::cout << std::endl;
 	}
+<<<<<<< HEAD
 	void PrintAllDataBackward()
 	{
 		for (Node* nd = tail->prev; nd != head; nd = nd->prev)
@@ -102,6 +107,8 @@ public:
 		}
 		std::cout << std::endl;
 	}
+=======
+>>>>>>> eac9345a8878ee39a3b7554a5be79aa63d8a22b1
 private:
 	//데이터를 추가합니다.
 	void Add(Node* nd_next, const Data& data)
