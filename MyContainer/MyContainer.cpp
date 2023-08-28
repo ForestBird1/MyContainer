@@ -360,6 +360,7 @@ void MyContainer::TestMyLinkedList()
 		cout << "Q: RemoveFront(): 가장 앞의 데이터를 제거합니다" << endl;
 		cout << "W: RemoveBack(): 가장 뒤의 데이터를 제거합니다" << endl;
 		cout << "E: RemoveData(data): 삭제하고싶은 데이터를 찾아서 제거합니다. 찾지못하면 실패합니다" << endl;
+		cout << "R: RemoveAll(): 모든 데이터를 제거합니다" << endl;
 		cout << endl;
 		cout << "Z: GetDataFront(): 가장 앞의 데이터를 반환합니다" << endl;
 		cout << "X: GetDataBack(): 가장 뒤의 데이터를 반환합니다" << endl;
@@ -397,6 +398,11 @@ void MyContainer::TestMyLinkedList()
 			{
 				cout << endl << "데이터를 찾지 못해서 실패했습니다" << endl;
 			}
+		}
+		else if (c == 'R' || c == 'r')
+		{
+			cout << endl << "모든 데이터를 삭제합니다" << endl;
+			my_list.RemoveAll();
 		}
 
 		else if (c == 'Z' || c == 'z')

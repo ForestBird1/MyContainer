@@ -28,10 +28,10 @@ public:
 	~MyLinkedList()
 	{
 		//모든 노드 삭제
-		while (size >= 1)
-		{
-			RemoveFront();
-		}
+		RemoveAll();
+
+		delete head;
+		delete tail;
 	}
 
 	//데이터를 추가합니다
@@ -64,16 +64,18 @@ public:
 			if (nd->data == data)
 			{
 				//삭제할 데이터를 찾았습니다. 삭제합니다
-				nd->prev->next = nd->next;
-				nd->next->prev = nd->prev;
-				delete nd;
-				--size;
-				return true;
+				return Remove(nd);
 			}
 		}
 
 		//삭제할 데이터를 찾지 못했습니다
 		return false;
+	}
+
+	//모든 데이터를 삭제합니다
+	void RemoveAll()
+	{
+		while (RemoveFront()) {}
 	}
 
 	//데이터를 반환합니다
